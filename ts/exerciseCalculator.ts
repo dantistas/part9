@@ -59,5 +59,10 @@ for(let i=2; i<argvs.length; i++ ){
     }  
 }
 
+for(let i = 0; i<array.length; i++){
+    if(isNaN(array[i])){
+        throw new Error('values must be numbers!!')
+    }
 
+}
 exerciseCalculator(array, target)
