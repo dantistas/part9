@@ -46,4 +46,18 @@ const exerciseCalculator = (input: Array<number>, target: number) => {
 
 }
 
-exerciseCalculator([3, 0, 2, 4.5, 0, 3, 1], 2)
+const argvs  = process.argv.filter(a=>(a))
+
+const array : Array<number> = []
+let target: number = 0
+
+for(let i=2; i<argvs.length; i++ ){
+    if(i == 2 ){
+        target = parseFloat(argvs[i])
+    }else {
+        array.push(parseFloat(argvs[i]))
+    }  
+}
+
+
+exerciseCalculator(array, target)
