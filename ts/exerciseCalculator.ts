@@ -9,11 +9,13 @@ const exerciseCalculator = (input: Array<number>, target: number) => {
      
         switch(true){
             case totalTrainingHours <= 14/3:
-            return 1
+                return 1
             case totalTrainingHours <= (14/3)*2:
-            return 2
+                return 2
             case totalTrainingHours > (14/3)*2:
-            return 3
+                return 3
+            default: 
+                return NaN
         }   
     }
     const success = target <= rating()
@@ -22,11 +24,13 @@ const exerciseCalculator = (input: Array<number>, target: number) => {
 
         switch(true){
             case totalTrainingHours <= 14/3:
-            return "not good"
+                return "not good"
             case totalTrainingHours <= (14/3)*2:
-            return "not too bad but could be better"
+                return "not too bad but could be better"
             case totalTrainingHours > (14/3)*2:
-            return "very good"
+                return "very good"
+            default:
+                return "something went wrong"
         }
     }
 
