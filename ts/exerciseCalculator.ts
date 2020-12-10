@@ -1,4 +1,5 @@
-const exerciseCalculator = (input: Array<number>, target: number) => {
+
+export const exerciseCalculator = (input: Array<number>, target: number) => {
 
     const trainingDays = input.filter(i => i>0).length;
     const totalTrainingHours =  input.reduce(function(a,b){
@@ -45,7 +46,7 @@ const exerciseCalculator = (input: Array<number>, target: number) => {
 
     };
 
-    return console.log(returnObject);
+    return returnObject;
 
 };
 
