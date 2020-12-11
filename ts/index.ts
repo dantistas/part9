@@ -24,23 +24,29 @@ app.get(`/bmi`,(req, res)=>{
 });
 
 app.post('/exercises', (req,res)=>{
-
+  
   const exercises  = req.body.daily_exercises
   const target = req.body.target
   let validExercises = true
   let validTarget  = !(isNaN(target))
-
+  console.log(exercises)
+  console.log(target)
+  
+if(exercises && target){
   for(let i=0; i<exercises.length; i++ ){
-    if(isNaN(exercises[i])){
-      validExercises = false
+    if(isNaN(exercises[i])){                  
+      validExercises = false                  
     }
   }
+}
+  
 
-  if(!validTarget){
+
+  if(!exercises || !target){
+    return res.json({error: "missing parameters "})
+  }else if(!validTarget || !validExercises){
     return res.json({error: "malformed parameters "})
-  }else if (!validExercises){
-    return res.json({error: "malformed parameters "})
-  }else {
+  }else{
     const result = exerciseCalculator(exercises,target)
     return res.json(result)
   }
