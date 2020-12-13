@@ -9,6 +9,13 @@ export interface Patient {
     name: String,
     dateOfBirth: String,
     gender: String,
-    occupation: String
+    occupation: String,
+    ssn: String
 
+}
+
+export enum Gender {
+  male = "male",
+  female = "female",
+  other = "other"
 }

@@ -7,8 +7,17 @@ const getPatients = () => {
   return patients;
 };
 
-const addPatient = () => {
-  return null;
+const addPatient = (name: string, dateOfBirth: string, ssn: string, gender:string, occupation:String)  :Patient => {
+  const newPatient = {
+    id: (patients.length + 1).toString(),
+    name,
+    dateOfBirth,
+    ssn,
+    gender,
+    occupation
+  }
+  patients.push(newPatient);
+  return newPatient;
 };
 
 export default {
