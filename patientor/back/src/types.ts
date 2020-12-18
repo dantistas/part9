@@ -13,6 +13,7 @@ export interface Patient {
     ssn: String
 
 }
+export type NewPatient = Omit<Patient, "id">;
 
 export enum Gender {
   male = "male",

@@ -1,5 +1,5 @@
 import patientsData from '../data/patients.json'
-import {Patient} from '../types'
+import {Patient, NewPatient} from '../types'
 
 const patients: Array<Patient> = patientsData;
 
@@ -7,14 +7,10 @@ const getPatients = () => {
   return patients;
 };
 
-const addPatient = (name: string, dateOfBirth: string, ssn: string, gender:string, occupation:String)  :Patient => {
+const addPatient = (patient: NewPatient)  :Patient => {
   const newPatient = {
     id: (patients.length + 1).toString(),
-    name,
-    dateOfBirth,
-    ssn,
-    gender,
-    occupation
+    ...patient
   }
   patients.push(newPatient);
   return newPatient;
