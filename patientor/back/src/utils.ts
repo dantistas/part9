@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
 import {NewPatient, Gender} from './types'
 
 const isString = (text: any): text is string => {
@@ -58,6 +59,7 @@ const toNewPatient = (object: any): NewPatient => {
         gender: parseGender(object.gender),
         occupation: parseOccupation(object.occupation),
         ssn: parseSSN(object.ssn),
+        entries:[]
     }
     
 }
