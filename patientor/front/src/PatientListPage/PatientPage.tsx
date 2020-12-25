@@ -41,7 +41,27 @@ const PatientPage: React.FC = () => {
        }
     }
 
-    console.log(patient)
+
+    const dateDescriptionAndDiagnosisCodes = () => {
+        if(patient?.entries){
+            const dateAndDescription = patient.entries.map(e => <p key={e.date}>{e.date}: {e.description}</p>)
+            const diagnoseCodes = patient.entries.map(e=> e.diagnosisCodes?.map(code => <li key={code}>{code}</li>))
+            if(dateAndDescription.length === 0 || diagnoseCodes.length === 0){
+                return (
+                    <h3>NO ENTRIES</h3>
+                )
+            }else{
+                return (
+                <div>
+                    <h3>Entries: </h3>
+                    {dateAndDescription}
+                    {diagnoseCodes}
+                </div>
+            )
+        }
+    }
+    }
+
     
 
     if(!patient){
@@ -54,6 +74,7 @@ const PatientPage: React.FC = () => {
                 <h1>{patient.name} {genderIcon()}</h1>
                 <p>ssn: {patient.ssn}</p>
                 <p>occupation: {patient.occupation}</p>
+                {dateDescriptionAndDiagnosisCodes()}
             </div>
         )
     }
