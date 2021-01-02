@@ -4,8 +4,8 @@ import { apiBaseUrl } from "../constants";
 import {useParams} from 'react-router-dom';
 import { useStateValue, setPatientData } from "../state";
 import { Icon } from "semantic-ui-react";
-import { Patient } from "../types";
-import { DiagnosisSelection } from "../AddPatientModal/FormField";
+import { Patient, Entry } from "../types";
+import EntryDetails from './EntryDetails'
 
 
 
@@ -13,7 +13,6 @@ import { DiagnosisSelection } from "../AddPatientModal/FormField";
 
 const PatientPage: React.FC = () => {
     const [{patient}, dispatch] = useStateValue()
-    const [{ diagnosesList }] = useStateValue()
 
     const { id } = useParams<{ id: string }>();
 
@@ -43,29 +42,6 @@ const PatientPage: React.FC = () => {
        }
     }
 
-
-    const dateDescriptionAndDiagnosisCodes = () => {
-        if(patient?.entries){
-            const dateAndDescription = patient.entries.map(e => <p key={e.date}>{e.date}: {e.description}</p>)
-            const diagnoseCodes = patient.entries.map(e=> e.diagnosisCodes?.map((code) => {
-                const diagnose = diagnosesList.find(diagnose => diagnose.code === code)
-                return (<li key={code}>{code} {diagnose?.name}</li>)}))
-            if(dateAndDescription.length === 0 || diagnoseCodes.length === 0){
-                return (
-                    <h3>NO ENTRIES</h3>
-                )
-            }else{
-                return (
-                <div>
-                    <h3>Entries: </h3>
-                    {dateAndDescription}
-                    {diagnoseCodes}
-                </div>
-            )
-        }
-    }
-    }
-
     if(!patient){
         return (
             null
@@ -76,7 +52,8 @@ const PatientPage: React.FC = () => {
                 <h1>{patient.name} {genderIcon()}</h1>
                 <p>ssn: {patient.ssn}</p>
                 <p>occupation: {patient.occupation}</p>
-                {dateDescriptionAndDiagnosisCodes()}
+                {patient.entries.length > 0 ? <h2>Entries: </h2> : null }
+                {patient.entries.map((entry: Entry)=>(<EntryDetails key={entry.id} entry={entry}/>))}
             </div>
         )
     }
