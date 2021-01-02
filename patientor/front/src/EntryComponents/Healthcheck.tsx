@@ -12,6 +12,8 @@ interface HealthcheckProps {
 
 
 const Healthcheck: React.FC<HealthcheckProps>  = ({entry}) => {
+    console.log("entry: ", entry)
+    console.log("rating: ",entry.healthCheckRating)
     
     const getHealthRatingIcon = () => {
         switch(entry.healthCheckRating){

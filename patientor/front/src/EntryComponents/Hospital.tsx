@@ -12,7 +12,6 @@ interface HospitalProps {
 
 const Hospital: React.FC<HospitalProps> = ({ entry }) => {
 
-    console.log(entry)
     return (
         <div>
             <Segment>

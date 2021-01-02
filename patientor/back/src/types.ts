@@ -8,7 +8,7 @@ export interface Diagnose {
     latin?: string;
   }
 
-  interface BaseEntry {
+export interface BaseEntry {
     id: string;
     description: string;
     date: string;
@@ -28,21 +28,36 @@ export interface Diagnose {
     healthCheckRating: HealthCheckRating;
   }
 
+  export interface SickLeave {
+    startDate: string,
+    endDate: string
+  }
+
   interface OccupationalHealthcareEntry extends BaseEntry {
     type: "OccupationalHealthcare";
     employerName: string;
-    sickLeave?: { startDate: string; endDate: string };
+    sickLeave?: SickLeave;
+  }
+
+  export interface Discharge {
+    date: string,
+    criteria: string
   }
 
   interface HospitalEntry extends BaseEntry {
     type: "Hospital";
-    discharge?: { date: string; criteria: string };
+    discharge?: Discharge;
   }
 
   export type Entry =
   | HospitalEntry
   | OccupationalHealthcareEntry
   | HealthCheckEntry;
+
+  export type NewEntry =
+  | Omit<HospitalEntry, "id">
+  | Omit<OccupationalHealthcareEntry, "id">
+  | Omit<HealthCheckEntry, "id">;
 
 export interface Patient {
     id: string;
@@ -64,3 +79,9 @@ export enum Gender {
   Female = "female",
   Other = "other"
 }
+
+export const assertNever = (value: never): never => {
+  throw new Error(
+    `Unhandled discriminated union member: ${JSON.stringify(value)}`
+  );
+};

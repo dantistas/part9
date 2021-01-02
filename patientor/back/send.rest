@@ -1,10 +1,45 @@
-POST http://localhost:3001/api/patients
+POST http://localhost:3001/api/patients/d2773336-f723-11e9-8f0b-362b9e155667/entries
 Content-Type: application/json
 
 {
-  "name": "rytis12343",
-  "dateOfBirth": "10-10-1990",
-  "ssn": "123456",
-  "gender": "male",
-  "occupation": "sd"
+  "type": "Hospital",
+  "description": "broken nose",
+  "date": "1-1-2020",
+  "specialist": "boxer",
+  "diagnosisCodes": ["Z74.3", "F43.2"],
+  "discharge": {
+    "date": "01-01-2021",
+    "criteria": "nose healed"
+  }
+}
+###
+
+POST http://localhost:3001/api/patients/d2773336-f723-11e9-8f0b-362b9e155667/entries
+Content-Type: application/json
+
+{
+  "type": "OccupationalHealthcare",
+  "description": "broken nose",
+  "date": "1-1-2020",
+  "specialist": "boxer",
+  "diagnosisCodes": ["Z74.3", "F43.2"],
+  "employerName": "Boxing federation",
+  "sickLeave": {
+    "startDate": "01-01-2021",
+    "endDate": "10-02-2021"
+  }
+}
+
+###
+
+POST http://localhost:3001/api/patients/d2773336-f723-11e9-8f0b-362b9e155667/entries
+Content-Type: application/json
+
+{
+  "type": "HealthCheck",
+  "description": "broken nose",
+  "date": "1-1-2021",
+  "specialist": "boxer",
+  "diagnosisCodes": ["Z74.3", "F43.2"],
+  "healthCheckRating": 2
 }
