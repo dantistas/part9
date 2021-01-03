@@ -40,7 +40,12 @@ export const AddEntryForm: React.FC<Props> = ({ onSubmit, onCancel }) => {
                     onSubmit={onSubmit}
                     validate={values => {
                         const requiredError = "Field is required";
-                        const errors: { [field: string]: string } = {};
+                        let errors:
+                        | { [field: string]: string }
+                        | { [key: string]: {
+                                            [key: string]: string;
+                                            };
+                          } = {};
                         if (!values.description) {
                           errors.description = requiredError;
                         }
@@ -52,6 +57,59 @@ export const AddEntryForm: React.FC<Props> = ({ onSubmit, onCancel }) => {
                         }
                         if(values.type === "null"){
                             errors.type = "null"
+                        }
+                        if(values.type === "Hospital" && !values.discharge.date){
+                            errors = {...errors,
+                                discharge: {
+                                    date: requiredError
+                                }        
+                            }
+                        }
+                        if(values.type === "Hospital" && !values.discharge.criteria){
+                            errors = {...errors,
+                                discharge: {
+                                    criteria: requiredError
+                                }        
+                            }
+                        }
+                        if(values.type === "Hospital" && !values.discharge.criteria && !values.discharge.date){
+                            errors = {...errors,
+                                discharge: {
+                                    date: requiredError,
+                                    criteria: requiredError
+                                }        
+                            }
+                        }
+                        if(values.type === "HealthCheck" && (values.healthCheckRating < 0 || values.healthCheckRating > 3)){
+                            errors.healthCheckRating = "Healthcheck value must be either 0, 1, 2 or 3 !"
+                        }
+                        if(values.type === "OccupationalHealthcare" && !values.employerName){
+                            errors.employerName = requiredError
+                        }
+                        if(values.type === "OccupationalHealthcare" && !values.sickLeave.startDate ){
+                            errors = {
+                                ...errors,
+                                sickLeave: {
+                                    startDate: requiredError
+                                }
+                            }
+                        }
+                        if(values.type === "OccupationalHealthcare" && !values.sickLeave.endDate){
+                            errors = {
+                                ...errors,
+                                sickLeave: {
+                                    endDate: requiredError
+                                }
+                            }
+                        }
+                        if(values.type === "OccupationalHealthcare" && !values.sickLeave.startDate && !values.sickLeave.endDate){
+                            errors = {
+                                ...errors,
+                                sickLeave: {
+                                    startDate: requiredError,
+                                    endDate: requiredError
+                                }
+                            }
                         }
                         return errors;
                       }}

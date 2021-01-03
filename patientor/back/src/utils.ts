@@ -124,7 +124,7 @@ const parseDischarge = (discharge: any ): Discharge => {
 
 const parseSickLeave = (sickLeave: any): SickLeave => {
     if(!sickLeave.startDate || !sickLeave.endDate || !isString(sickLeave.startDate) || !isString(sickLeave.endDate) || !isDate(sickLeave.startDate) || !isDate(sickLeave.endDate)){
-        throw new Error("Incorrect or missing sick leabve details: " + sickLeave.startDate + " " + sickLeave.endDate)
+        throw new Error("Incorrect or missing sick leave details: " + sickLeave.startDate + " " + sickLeave.endDate)
     }
     return sickLeave
 }

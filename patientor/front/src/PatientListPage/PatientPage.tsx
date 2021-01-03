@@ -60,7 +60,8 @@ const PatientPage: React.FC = () => {
             dispatch(addEntry(entry))
             closeModal()
         }catch (e){
-            console.log(e)
+            console.log(e.response)
+            setError(e.response.data)
         }
       };
 
