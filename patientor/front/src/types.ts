@@ -35,15 +35,23 @@ export interface HospitalEntry extends BaseEntry {
   discharge?: { date: string; criteria: string };
 }
 
+
 export type Entry =
 | HospitalEntry
 | OccupationalHealthcareEntry
-| HealthCheckEntry;
+| HealthCheckEntry
+
 
 export enum Gender {
   Male = "male",
   Female = "female",
   Other = "other"
+}
+
+export enum EntryType {
+  Hospital = "Hospital",
+  OccupationalHealthcare = "OccupationalHealthcare",
+  HealthCheck = "HealthCheck"
 }
 
 export interface Patient {

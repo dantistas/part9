@@ -14,12 +14,12 @@ router.get('/:id', (req, res) => {
 
 router.post('/:id/entries', (req, res) => {
   const patient = patientServices.getPatientByID(req.params.id)
+  console.log("krc ???",req.body)
   const newEntry = toNewEntry(req.body)
-  console.log("patients endpoint: ",newEntry)
 
   if(patient && newEntry){
-    const addedEntry = patientServices.addEntry(patient , newEntry)
-    res.json(addedEntry)
+    const patientWithAddedEntry = patientServices.addEntry(patient , newEntry)
+    res.json(patientWithAddedEntry)
   }
 })
 

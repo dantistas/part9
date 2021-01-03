@@ -19,6 +19,11 @@ export type Action =
    {
      type: "SET_DIAGNOSES_LIST";
      payload: Diagnosis[];
+   }
+   |
+   {
+     type: "ADD_ENTRY";
+     payload: Patient
    } ;
 
 export const reducer = (state: State, action: Action): State => {
@@ -52,11 +57,22 @@ export const reducer = (state: State, action: Action): State => {
         ...state,
         diagnosesList: action.payload,
       };
+    case "ADD_ENTRY":
+      return {
+        ...state,
+        patient: action.payload
+      }
     default:
       return state;
   }
 };
 
+export const addEntry = (patientWithNewEntry: Patient): Action => {
+  return{
+    type: "ADD_ENTRY",
+    payload: patientWithNewEntry
+  }
+}
 
 export const setPatientList = (patients: Patient[]): Action => {
   return {

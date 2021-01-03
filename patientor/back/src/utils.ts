@@ -138,6 +138,7 @@ const parseHealthcheckRating = (rating: any ): HealthCheckRating=> {
 }
 
 const parseEntry = (entry: any): NewEntry => {
+    console.log("utilsai",entry)
     if(!entry || !isEntryType(entry.type)){
         throw new Error ("Incorrect or missign entry: "+ entry)
     }
